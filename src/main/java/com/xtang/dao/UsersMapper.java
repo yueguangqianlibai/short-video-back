@@ -1,7 +1,9 @@
 package com.xtang.dao;
 
 import com.xtang.pojo.Users;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UsersMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface UsersMapper {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    int queryName(String userName);
 }

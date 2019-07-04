@@ -36,8 +36,8 @@
       update_time)
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{faceImage,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{fansCounts,jdbcType=INTEGER}, 
-      #{followCounts,jdbcType=INTEGER}, #{receiveLikeCounts,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{followCounts,jdbcType=INTEGER}, #{receiveLikeCounts,jdbcType=INTEGER}, now(),
+      now())
   </insert>
   <insert id="insertSelective" parameterType="com.xtang.pojo.Users">
     insert into t_users
@@ -99,10 +99,10 @@
         #{receiveLikeCounts,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -134,7 +134,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now{},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -149,7 +149,14 @@
       follow_counts = #{followCounts,jdbcType=INTEGER},
       receive_like_counts = #{receiveLikeCounts,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="queryName" parameterType="string" resultType="integer">
+  select
+  count(*)
+  from t_users
+  where username = #{userName}
+  </select>
 </mapper>

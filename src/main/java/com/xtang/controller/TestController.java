@@ -17,7 +17,7 @@ public class TestController {
     @RequestMapping("/test")
     public String testHello(){
         System.out.println("everything is ok!");
-        return "project is ok";
+        return "project is ok i love my home";
     }
 
 }
