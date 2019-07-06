@@ -54,6 +54,7 @@ public class UsersController {
     @ApiOperation(value = "用户登录接口",notes = "用户登录接口notes")
     @PostMapping("login")
     public ServerResponse usersLogin(Users users, HttpServletRequest req) throws Exception{
+        Thread.sleep(5000);
         if (StringUtils.isBlank(users.getUsername()) || StringUtils.isBlank(users.getPassword())){
             return ServerResponse.createByErrorMsg("账号和密码为空");
         }

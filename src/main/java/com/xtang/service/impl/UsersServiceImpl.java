@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -55,7 +54,7 @@ public class UsersServiceImpl implements IUsersService {
             Users newUsers = usersMapper.selectLogin(users.getUsername(), users.getPassword());
             if (newUsers != null) {
                 newUsers.setPassword(null);
-                return ServerResponse.createBySuccessAll("登陆成功", newUsers);
+                return ServerResponse.createBySuccessAll("登录成功", newUsers);
             } else {
                 return ServerResponse.createByErrorMsg("账号或密码有误");
             }
