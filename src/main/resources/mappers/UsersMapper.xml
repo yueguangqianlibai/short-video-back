@@ -159,4 +159,12 @@
   from t_users
   where username = #{userName}
   </select>
+
+  <select id="selectLogin" parameterType="string" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from t_users
+  where username = #{username}
+  and password = #{password}
+  </select>
 </mapper>

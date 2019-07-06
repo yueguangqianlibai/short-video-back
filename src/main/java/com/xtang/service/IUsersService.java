@@ -15,4 +15,6 @@ public interface IUsersService {
     boolean queryUserNameIsExist(String username);
 
     ServerResponse saveUser(Users users);
+
+    ServerResponse login(Users users) throws Exception;
 }

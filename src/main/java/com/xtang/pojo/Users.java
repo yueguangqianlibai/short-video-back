@@ -1,26 +1,43 @@
 package com.xtang.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
+@ApiModel(value = "用户对象",description = "用户对象")
 public class Users {
+    @ApiModelProperty(hidden = true)
     private String id;
 
+    @ApiModelProperty(value = "用户名",name = "username",example = "xTang",required = true)
     private String username;
 
+    @ApiModelProperty(value = "密码",name = "password",example = "123456",required = true)
     private String password;
 
+    @ApiModelProperty(hidden = true)
     private String faceImage;
 
+    @ApiModelProperty(hidden = true)
     private String nickname;
 
+    @ApiModelProperty(hidden = true)
     private Integer fansCounts;
 
+    @ApiModelProperty(hidden = true)
     private Integer followCounts;
 
+    @ApiModelProperty(hidden = true)
     private Integer receiveLikeCounts;
 
+    @ApiModelProperty(hidden = true)
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
+    @ApiModelProperty(hidden = true)
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8")
     private Date updateTime;
 
     public Users(String id, String username, String password, String faceImage, String nickname, Integer fansCounts, Integer followCounts, Integer receiveLikeCounts, Date createTime, Date updateTime) {
