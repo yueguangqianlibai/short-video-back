@@ -14,7 +14,7 @@ import java.io.IOException;
  * @program: short-video-back
  * @Date: 2019/7/6 14:04
  * @Author: xTang
- * @Description: 单点登录之拦截器
+ * @Description: 拦截器
  */
 @WebFilter(filterName = "myFilter", urlPatterns = {"/test/*"})
 public class security implements Filter {

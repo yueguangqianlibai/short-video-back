@@ -2,6 +2,7 @@ package com.xtang.service;
 
 import com.xtang.common.ServerResponse;
 import com.xtang.pojo.Users;
+import org.springframework.stereotype.Repository;
 
 /**
  * @program: short-video-back
