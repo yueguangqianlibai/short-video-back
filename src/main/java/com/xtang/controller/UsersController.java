@@ -4,7 +4,9 @@ import com.xtang.common.ServerResponse;
 import com.xtang.pojo.Users;
 import com.xtang.service.IUsersService;
 import com.xtang.utils.MD5Utils;
+import com.xtang.utils.RedisOperator;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +27,15 @@ import java.util.UUID;
 @RestController
 @Api(value = "用户相关服务的接口", tags = {"注册和登录的响应接口(Controller)"})
 @RequestMapping("users")
-public class UsersController {
+public class UsersController extends BasicController {
 
     @Autowired
     private IUsersService iUsersService;
 
-    @ApiOperation(value = "用户注册接口", notes = "用户注册的接口notes")
+    @Autowired
+    private RedisOperator redis;
+
+    @ApiOperation(value = "用户注册接口", notes = "用户注册的接口服务")
     @PostMapping("regist")
     public ServerResponse regist(Users users) throws Exception {
         if (StringUtils.isBlank(users.getUsername()) || StringUtils.isBlank(users.getPassword())) {
@@ -48,7 +53,7 @@ public class UsersController {
         }
     }
 
-    @ApiOperation(value = "用户登录接口", notes = "用户登录接口notes")
+    @ApiOperation(value = "用户登录接口", notes = "用户登录接口服务")
     @PostMapping("login")
     public ServerResponse usersLogin(Users users, HttpServletRequest req) throws Exception {
 //        Thread.sleep(5000);
@@ -80,7 +85,16 @@ public class UsersController {
 //        }
     }
 
-    @ApiOperation(value = "测试接口", notes = "测试接口notes")
+    @ApiOperation(value = "注销接口", notes = "注销接口服务")
+    @ApiImplicitParam(name = "userId",value = "用户ID",required = true,
+                            dataType = "String",paramType = "query")
+    @PostMapping("logout")
+    public ServerResponse logout(String userId) throws Exception{
+        redis.del(USERS_REDIS_SESSION+":"+userId);
+        return ServerResponse.createBySuccessMsg("注销成功");
+    }
+
+    @ApiOperation(value = "测试接口", notes = "测试接口服务")
     @GetMapping("test")
     public ServerResponse test() {
         return ServerResponse.createBySuccessMsg("测试成功");

@@ -79,4 +79,9 @@ public class UsersServiceImpl extends BasicController implements IUsersService {
         usersVo.setUserToken(uniqueToken);
         return usersVo;
     }
+
+    @Override
+    public void updateUserInfo(Users users) {
+        usersMapper.updateByPrimaryKeySelective(users);
+    }
 }

@@ -12,10 +12,23 @@ import org.springframework.stereotype.Repository;
  */
 public interface IUsersService {
 
-
+    /**
+     * 查username是否重复
+     */
     boolean queryUserNameIsExist(String username);
 
+    /**
+     * 新增用户
+     */
     ServerResponse saveUser(Users users);
 
+    /**
+     * 登录
+     */
     ServerResponse login(Users users) throws Exception;
+
+    /**
+     * 更新用户信息
+     */
+    void updateUserInfo(Users users);
 }
