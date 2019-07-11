@@ -16,7 +16,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, password, face_image, nickname, fans_counts, follow_counts, receive_like_counts, 
+    id, username, password, face_image, nickname, fans_counts, follow_counts, receive_like_counts,
     create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -133,9 +133,7 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = now{},
-      </if>
+        update_time = now(),
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>

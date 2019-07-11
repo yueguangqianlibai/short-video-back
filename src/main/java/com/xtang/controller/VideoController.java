@@ -1,16 +1,9 @@
 package com.xtang.controller;
 
 import com.xtang.common.ServerResponse;
-import com.xtang.pojo.Users;
-import com.xtang.service.IUsersService;
-import com.xtang.vo.UsersVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,23 +17,36 @@ import java.io.InputStream;
 
 /**
  * @program: short-video-back
- * @Date: 2019/7/8 19:48
+ * @Date: 2019/7/9 23:33
  * @Author: xTang
  * @Description:
  */
+
 @RestController
-@Api(value = "用户业务相关服务的接口", tags = {"用户业务相关服务的响应接口(Controller)"})
-@RequestMapping("userService")
-public class UserServerController {
+@Api(value = "视频服务的接口", tags = {"视频相关服务的响应接口(Controller)"})
+@RequestMapping("video")
+public class VideoController {
 
-    @Autowired
-    private IUsersService iUsersService;
 
-    @ApiOperation(value = "用户上传头像", notes = "用户上传头像接口服务")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true,
-            dataType = "String", paramType = "query")
-    @PostMapping("uploadFace")
-    public ServerResponse uploadFace(String userId,@RequestParam("file") MultipartFile[] files) throws Exception {
+    @ApiOperation(value = "用户上传视频", notes = "用户上传视频接口服务")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "用户ID", required = true,
+                    dataType = "String", paramType = "form"),
+            @ApiImplicitParam(name = "bgmId", value = "背景音乐ID", required = false,
+                    dataType = "String", paramType = "form"),
+            @ApiImplicitParam(name = "videoSeconds", value = "背景音乐播放长度", required = true,
+                    dataType = "String", paramType = "form"),
+            @ApiImplicitParam(name = "videoWidth", value = "视频宽度", required = true,
+                    dataType = "String", paramType = "form"),
+            @ApiImplicitParam(name = "videoHeight", value = "视频高度", required = true,
+                    dataType = "String", paramType = "form"),
+            @ApiImplicitParam(name = "desc", value = "视频描述", required = false,
+                    dataType = "String", paramType = "form")
+    })
+    @PostMapping(value = "uploadVideo",headers = "content-type=multipart/form-data")
+    public ServerResponse uploadVideo(String userId, String bgmId, double videoSeconds,
+                                     int videoWidth,int videoHeight,String desc,
+                                     @ApiParam(value = "短视频",required = true) MultipartFile file) throws Exception {
 
         if(StringUtils.isBlank(userId)){
             return ServerResponse.createByErrorMsg("用户ID为空");
@@ -49,27 +55,27 @@ public class UserServerController {
         //文件保存的命名空间
         String fileSpace = "G:/short-video-back-dev";
         //保存到数据库的相对路径
-        String uploadPathDB = "/" + userId + "/face";
+        String uploadPathDB = "/" + userId + "/video";
         FileOutputStream fileOutputStream = null;
         InputStream inputStream = null;
         try {
-            if (files != null && files.length > 0) {
+            if (file != null) {
                 //获取文件名
-                String fileName = files[0].getOriginalFilename();
+                String fileName = file.getOriginalFilename();
                 if (StringUtils.isNoneBlank(fileName)) {
                     //文件上传的最终保存路径
-                    String finalFacePath = fileSpace + uploadPathDB + "/" + fileName;
+                    String finalVideoPath = fileSpace + uploadPathDB + "/" + fileName;
                     //设置数据库保存的路径
                     uploadPathDB += ("/" + fileName);
 
-                    File outFile = new File(finalFacePath);
+                    File outFile = new File(finalVideoPath);
                     if (outFile.getParentFile() != null || !outFile.getParentFile().isDirectory()){
                         //创建父文件夹
                         outFile.getParentFile().mkdirs();
                     }
 
                     fileOutputStream = new FileOutputStream(outFile);
-                    inputStream = files[0].getInputStream();
+                    inputStream = file.getInputStream();
                     IOUtils.copy(inputStream,fileOutputStream);
                 }
             }else{
@@ -85,25 +91,6 @@ public class UserServerController {
                 fileOutputStream.close();
             }
         }
-        Users users = new Users();
-        users.setId(userId);
-        users.setFaceImage(uploadPathDB);
-        iUsersService.updateUserInfo(users);
         return ServerResponse.createBySuccessAll("上传成功",uploadPathDB);
-    }
-
-
-    @ApiOperation(value = "查询用户信息", notes = "查询用户信息接口服务")
-    @ApiImplicitParam(name = "userId",value = "用户ID",required = true,
-            dataType = "String",paramType = "query")
-    @PostMapping("queryInfo")
-    public ServerResponse queryUserInfo(String userId) throws Exception{
-        if (StringUtils.isBlank(userId)){
-            return ServerResponse.createByErrorMsg("未获取到用户信息");
-        }
-        Users users = iUsersService.queryUsersInfo(userId);
-        UsersVo usersVo = new UsersVo();
-        BeanUtils.copyProperties(users,usersVo);
-        return ServerResponse.createBySuccessAll("查询用户信息成功",usersVo);
     }
 }

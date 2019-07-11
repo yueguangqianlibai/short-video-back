@@ -1,5 +1,7 @@
 package com.xtang.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Bgm {
@@ -11,8 +13,10 @@ public class Bgm {
 
     private String path;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8")
     private Date updateTime;
 
     public Bgm(String id, String author, String name, String path, Date createTime, Date updateTime) {

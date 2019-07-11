@@ -43,6 +43,7 @@ public class UsersServiceImpl extends BasicController implements IUsersService {
         return result == 0 ? true : false;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public ServerResponse saveUser(Users users) {
         String uid = sid.nextShort();
@@ -55,6 +56,8 @@ public class UsersServiceImpl extends BasicController implements IUsersService {
         return ServerResponse.createByErrorMsg("注册失败");
     }
 
+
+    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
     @Override
     public ServerResponse login(Users users) throws Exception {
         if (!queryUserNameIsExist(users.getUsername())) {
@@ -80,8 +83,17 @@ public class UsersServiceImpl extends BasicController implements IUsersService {
         return usersVo;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
     public void updateUserInfo(Users users) {
         usersMapper.updateByPrimaryKeySelective(users);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
+    @Override
+    public Users queryUsersInfo(String userId) {
+        Users users = usersMapper.selectByPrimaryKey(userId);
+        users.setPassword(null);
+        return users;
     }
 }

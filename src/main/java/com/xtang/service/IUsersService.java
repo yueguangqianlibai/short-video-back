@@ -31,4 +31,11 @@ public interface IUsersService {
      * 更新用户信息
      */
     void updateUserInfo(Users users);
+
+    /**
+     * 获取用户信息
+     * @param UserId
+     * @return
+     */
+    Users queryUsersInfo(String UserId);
 }
