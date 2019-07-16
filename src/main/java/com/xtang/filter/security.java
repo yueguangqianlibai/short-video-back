@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Author: xTang
  * @Description: 拦截器
  */
-@WebFilter(filterName = "myFilter", urlPatterns = {"/test/*"})
+//@WebFilter(filterName = "myFilter", urlPatterns = {"/test/*"})
 public class security implements Filter {
 
     private Logger logger = LoggerFactory.getLogger(security.class);

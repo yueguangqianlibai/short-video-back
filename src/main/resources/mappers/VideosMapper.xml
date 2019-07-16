@@ -79,9 +79,7 @@
       <if test="status != null">
         status,
       </if>
-      <if test="createTime != null">
         create_time,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -117,9 +115,7 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
+        now(),
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xtang.pojo.Videos">
@@ -176,4 +172,5 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
 </mapper>

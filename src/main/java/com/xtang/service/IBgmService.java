@@ -17,4 +17,6 @@ public interface IBgmService {
      */
     List<Bgm> queryBgmList();
 
+    Bgm selectById(String bgmId);
+
 }

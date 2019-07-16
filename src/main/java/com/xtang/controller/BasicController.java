@@ -23,4 +23,14 @@ public class BasicController {
 
     public static final String USERS_REDIS_SESSION = "users-redis-session";
 
+    /**
+     *     文件保存的空间
+     */
+
+    public static final String FILE_SPACE = "G:/short-video-back-dev";
+    /**
+     *      ffmpeg所在目录
+     */
+    public static final String FFMPEG_EXE = "G:\\ffmpeg\\bin\\ffmpeg.exe";
+
 }
