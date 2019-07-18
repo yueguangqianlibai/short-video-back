@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xtang.dao.VideosMapperCustom">
+  <resultMap id="BaseResultMap" type="com.xtang.vo.VideosVo">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="audio_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="video_desc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="video_path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="video_seconds" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="video_width" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="video_heigh" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cover_path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="like_counts" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+
+      <arg column="face_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="nickname" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+
+  <select id="queryAllVideos" resultMap="BaseResultMap">
+    select v.*,u.face_image as face_image,u.nickname as nickname from
+    t_videos v
+    left join
+    t_users u on u.id = v.user_id
+    where 1 = 1 and v.status = 1
+    order by v.create_time desc
+  </select>
+</mapper>

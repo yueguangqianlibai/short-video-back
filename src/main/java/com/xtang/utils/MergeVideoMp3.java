@@ -16,7 +16,9 @@ public class MergeVideoMp3 {
 
     private String ffmpegEXE;
 
-    private String trueUrl;
+    private String trueUrl = "";
+
+    private String coverPath = "";
 
     /**
      * 刚上传上来的视频
@@ -48,33 +50,34 @@ public class MergeVideoMp3 {
         command.add("-y");
         command.add(videoOutputPath);
 
+
         this.commonMethod(command);
         trueUrl = videoOutputPath;
+
+        //把.mp4替换成.jpg
+        this.getVideoCoverPath(trueUrl.replace(".mp4",".jpg"));
 
         this.deleteOldVideo1(videoPath1);
         this.deleteOldVideo2(videoPath2);
     }
 
     public void deleteOldVideo1(String videoPath1) throws Exception {
-        String trueOldVideoUrl = videoPath1.replace("/","\\");
+        String trueOldVideoUrl = videoPath1.replace("/", "\\");
         String cmdMain = "cmd /c del ";
         Runtime run = Runtime.getRuntime();
-        String cmd=cmdMain+trueOldVideoUrl;
+        String cmd = cmdMain + trueOldVideoUrl;
         Process p = run.exec(cmd);
-        System.err.println("videoPath1---"+cmd);
         p.waitFor();
     }
 
     public void deleteOldVideo2(String videoPath2) throws Exception {
-        String trueOldVideoUrl = videoPath2.replace("/","\\");
+        String trueOldVideoUrl = videoPath2.replace("/", "\\");
         String cmdMain = "cmd /c del ";
         Runtime run = Runtime.getRuntime();
-        String cmd=cmdMain+trueOldVideoUrl;
+        String cmd = cmdMain + trueOldVideoUrl;
         Process p = run.exec(cmd);
-        System.err.println("videoPath2---"+cmd);
         p.waitFor();
     }
-
 
     public void deleteBackgroundMusic(String videoInputPath, String mp3InputPath,
                                       String videoOutputPath, double seconds) throws Exception {
@@ -94,6 +97,28 @@ public class MergeVideoMp3 {
         String newVideoUrl = videoOutputPath;
         this.commonMethod(command);
         this.convertor(newVideoUrl, mp3InputPath, sb.toString(), seconds);
+    }
+
+    public void getVideoCoverPath(String coverOutputPath) throws Exception{
+        List<String> command = new java.util.ArrayList<String>();
+        command.add(ffmpegEXE);
+
+        // 指定截取第1秒
+        command.add("-ss");
+        command.add("00:00:01");
+
+        command.add("-y");
+        command.add("-i");
+        command.add(trueUrl);
+
+        command.add("-vframes");
+        command.add("1");
+
+        command.add(coverOutputPath);
+
+        this.commonMethod(command);
+
+        coverPath = coverOutputPath;
     }
 
 //    public void delectOldVideo(String url) throws Exception{
@@ -127,10 +152,13 @@ public class MergeVideoMp3 {
         }
     }
 
-    public String userTheMethod(String videoInputPath, String mp3InputPath,
-                                String videoOutputPath, double seconds) throws Exception {
+    public List<String> userTheMethod(String videoInputPath, String mp3InputPath,
+                                      String videoOutputPath, double seconds) throws Exception {
         this.deleteBackgroundMusic(videoInputPath, mp3InputPath, videoOutputPath, seconds);
-        return trueUrl;
+        List<String> pathlist = new ArrayList<>();
+        pathlist.add(trueUrl);
+        pathlist.add(coverPath);
+        return pathlist;
     }
 
     public static void main(String[] args) {

@@ -33,4 +33,9 @@ public class BasicController {
      */
     public static final String FFMPEG_EXE = "G:\\ffmpeg\\bin\\ffmpeg.exe";
 
+    /**
+     * 每页分页的数量
+     */
+    public static final Integer PAGE_SIZE = 5;
+
 }
