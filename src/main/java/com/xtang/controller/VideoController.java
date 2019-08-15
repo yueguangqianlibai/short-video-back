@@ -3,6 +3,7 @@ package com.xtang.controller;
 import com.xtang.common.ServerResponse;
 import com.xtang.common.VideoStatusEmum;
 import com.xtang.pojo.Bgm;
+import com.xtang.pojo.Comments;
 import com.xtang.pojo.Videos;
 import com.xtang.service.IBgmService;
 import com.xtang.service.IVideoService;
@@ -76,6 +77,8 @@ public class VideoController {
         String finalVideoPath = "";
 
         String coverPathDB = "";
+
+        String fileName = "";
         //保存的相对路径 非最终路径
         String uploadPathDB = "/" + userId + "/video";
 
@@ -84,7 +87,7 @@ public class VideoController {
         try {
             if (file != null) {
                 //获取文件名
-                String fileName = file.getOriginalFilename();
+                fileName = file.getOriginalFilename();
                 if (StringUtils.isNoneBlank(fileName)) {
                     //文件上传的保存路径
                     //G:/short-video-back-dev/userId/video/fileName
@@ -112,6 +115,17 @@ public class VideoController {
                 fileOutputStream.close();
             }
         }
+
+        // TODO: 2019/7/18 没有bgm的视频截图并上传
+        if (StringUtils.isBlank(bgmId)) {
+            MergeVideoMp3 getCover = new MergeVideoMp3(BasicController.FFMPEG_EXE);
+            String coverResultPath = getCover.getCoverOfVideoNoBgm(finalVideoPath, finalVideoPath.replace(".mp4", ".jpg"));
+            StringBuffer sb = new StringBuffer(coverResultPath);
+            int i = sb.indexOf(fileName.replace(".mp4", ".jpg"));
+            coverResultPath = sb.substring(i);
+            coverPathDB = "/" + userId + "/video" + "/" + coverResultPath;
+        }
+
         // 判断bgmId是否为空，如果不为空，
         // 那就查询bgm的信息，并且合并视频，生产新的视频
         if (StringUtils.isNoneBlank(bgmId)) {
@@ -218,12 +232,82 @@ public class VideoController {
 //
 //    }
 
+    /**
+     * isSaveRecord 1-需要保存，0-不需要保存
+     *
+     * @param videos videos
+     * @param isSaveRecord isSaveRecord
+     * @param pageNum pageNum
+     * @return ServerResponse
+     */
     @PostMapping(value = "showAllVideo")
-    public ServerResponse showAllVideo(Integer pageNum){
+    public ServerResponse showAllVideo(Videos videos,
+                                       Integer isSaveRecord,
+                                       Integer pageNum) {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PagedResult result = iVideoService.pagedResult(pageNum, BasicController.PAGE_SIZE);
+        PagedResult result = iVideoService.pagedResult(videos, isSaveRecord, pageNum, BasicController.PAGE_SIZE);
         return ServerResponse.createBySuccessData(result);
     }
-}
+
+    @PostMapping(value = "hot")
+    public ServerResponse hotSearch() throws Exception {
+        return ServerResponse.createBySuccessData(iVideoService.getHotWords());
+    }
+
+    @PostMapping(value = "userLike")
+    public ServerResponse userLike(String userId, String videoId, String videoCreatorId) throws Exception {
+        iVideoService.userLikeVideo(userId, videoId, videoCreatorId);
+        return ServerResponse.createBySuccess();
+    }
+
+    @PostMapping(value = "userUnlike")
+    public ServerResponse userUnlike(String userId, String videoId, String videoCreatorId) throws Exception {
+        iVideoService.userUnlikeVideo(userId, videoId, videoCreatorId);
+        return ServerResponse.createBySuccess();
+    }
+
+    @PostMapping(value = "showUserWorks")
+    public ServerResponse showUserWorks(String userId,Integer pageNum,Integer pageSize) throws Exception {
+        PagedResult pagedResult = iVideoService.userWorksVideo(userId, pageNum, pageSize);
+        return ServerResponse.createBySuccessData(pagedResult);
+    }
+
+    @PostMapping(value = "getUserLikesList")
+    public ServerResponse getUserLikesList(String userId,Integer pageNum,Integer pageSize) throws Exception {
+        PagedResult pagedResult = iVideoService.getUserLikesList(userId, pageNum, pageSize);
+        return ServerResponse.createBySuccessData(pagedResult);
+    }
+
+
+    @PostMapping(value = "saveComment")
+    public ServerResponse saveComment(Comments comments,String fatherCommentId,String toUserId) throws Exception {
+        if(StringUtils.isNoneBlank(fatherCommentId) && StringUtils.isNoneBlank(toUserId)){
+            comments.setFatherCommentId(fatherCommentId);
+            comments.setToUserId(toUserId);
+        }*--++++0
+        iVideoService.saveComment(comments);
+        return ServerResponse.createBySuccessData("保存成功");
+    }
+
+
+    @PostMapping(value = "getVideoComments")
+    public ServerResponse getVideoComments(String videoId,Integer pageNum,Integer pageSize) throws Exception {
+        if (StringUtils.isBlank(videoId)){
+            return ServerResponse.createByError();
+        }
+        if(pageNum == 0){
+            pageNum = 1;
+        }
+        if(pageSize == 0){
+            pageSize =10;
+        }
+
+        PagedResult commentsList = iVideoService.getAllCommnets(videoId,pageNum,pageSize);
+        return ServerResponse.createBySuccessData(commentsList);
+    }
+
+
+//}
+/**///

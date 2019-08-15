@@ -10,29 +10,28 @@ import java.io.Serializable;
  * @JsonSerialize: 保证序列化json的时候,如果是null的对象,key也会消失
  */
 
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class ServerResponse<T> implements Serializable {
 
     private int status;
     private String msg;
     private T data;
 
-    private ServerResponse(int status){
+    public ServerResponse(int status){
         this.status = status;
     }
 
-    private ServerResponse(int status,T data){
+    public ServerResponse(int status,T data){
         this.status = status;
         this.data = data;
     }
 
-    private ServerResponse(int status,String msg,T data){
+    public ServerResponse(int status,String msg,T data){
         this.status = status;
         this.msg = msg;
         this.data = data;
     }
 
-    private ServerResponse(int status,String msg){
+    public ServerResponse(int status,String msg){
         this.status = status;
         this.msg = msg;
     }
@@ -94,8 +93,8 @@ public class ServerResponse<T> implements Serializable {
         return new ServerResponse<T>(ResponseCode.VALIDATION_ERROR.getCode(),ResponseCode.VALIDATION_ERROR.getDesc());
     }
 
-    public static <T> ServerResponse<T> createByErrorToken(){
-        return new ServerResponse<T>(ResponseCode.TOKEN_ERROR.getCode(),ResponseCode.TOKEN_ERROR.getDesc());
+    public static <T> ServerResponse<T> createByErrorToken(String msg){
+        return new ServerResponse<T>(ResponseCode.TOKEN_ERROR.getCode(),msg);
     }
 
     public static <T> ServerResponse<T> createByErrorAbnormalOutputInformation(){

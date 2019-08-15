@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xtang.dao.CommentsMapperCustom">
+    <resultMap id="BaseResultMap" type="com.xtang.vo.CommentsVo">
+        <constructor>
+            <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="father_comment_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="to_user_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="video_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="from_user_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="comment" javaType="java.lang.String" jdbcType="LONGVARCHAR"/>
+            <arg column="face_image" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="nickname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="toNickName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+
+    <select id="queryAllComments" parameterType="string" resultMap="BaseResultMap">
+        SELECT c.*,
+               u.face_image AS face_image,
+               u.nickname,
+               tu.nickname  AS toNickName
+        FROM t_comments c
+                 LEFT JOIN t_users u ON c.from_user_id = u.id
+                 LEFT JOIN t_users tu ON c.to_user_id = tu.id
+        WHERE c.video_id = #{videoId}
+        ORDER BY c.create_time DESC
+    </select>
+
+</mapper>

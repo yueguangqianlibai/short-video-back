@@ -121,6 +121,22 @@ public class MergeVideoMp3 {
         coverPath = coverOutputPath;
     }
 
+    public String getCoverOfVideoNoBgm(String coverInputPath,String coverOutputPath) throws Exception{
+        List<String> command = new java.util.ArrayList<String>();
+        command.add(ffmpegEXE);
+        // 指定截取第1秒
+        command.add("-ss");
+        command.add("00:00:01");
+        command.add("-y");
+        command.add("-i");
+        command.add(coverInputPath);
+        command.add("-vframes");
+        command.add("1");
+        command.add(coverOutputPath);
+        this.commonMethod(command);
+        return coverOutputPath;
+    }
+
 //    public void delectOldVideo(String url) throws Exception{
 //        List<String> command = new ArrayList<>();
 //        command.add("del");

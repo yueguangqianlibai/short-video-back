@@ -1,8 +1,8 @@
-package com.xtang.pojo;
+package com.xtang.vo;
 
 import java.util.Date;
 
-public class Comments {
+public class CommentsVo {
     private String id;
 
     private String fatherCommentId;
@@ -19,7 +19,15 @@ public class Comments {
 
     private String comment;
 
-    public Comments(String id, String fatherCommentId, String toUserId, String videoId, String fromUserId, Date createTime, Date updateTime, String comment) {
+    private String faceImage;
+
+    private String nickName;
+
+    private String timeAgoStr;
+
+    private String toNickName;
+
+    public CommentsVo(String id, String fatherCommentId, String toUserId, String videoId, String fromUserId, Date createTime, Date updateTime, String comment, String faceImage, String nickName,String toNickName) {
         this.id = id;
         this.fatherCommentId = fatherCommentId;
         this.toUserId = toUserId;
@@ -28,9 +36,12 @@ public class Comments {
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.comment = comment;
+        this.faceImage = faceImage;
+        this.nickName = nickName;
+        this.toNickName = toNickName;
     }
 
-    public Comments() {
+    public CommentsVo() {
         super();
     }
 
@@ -96,5 +107,37 @@ public class Comments {
 
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
+    }
+
+    public String getFaceImage() {
+        return faceImage;
+    }
+
+    public void setFaceImage(String faceImage) {
+        this.faceImage = faceImage;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getTimeAgoStr() {
+        return timeAgoStr;
+    }
+
+    public void setTimeAgoStr(String timeAgoStr) {
+        this.timeAgoStr = timeAgoStr;
+    }
+
+    public String getToNickName() {
+        return toNickName;
+    }
+
+    public void setToNickName(String toNickName) {
+        this.toNickName = toNickName;
     }
 }

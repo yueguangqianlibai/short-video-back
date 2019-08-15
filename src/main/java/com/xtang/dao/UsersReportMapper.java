@@ -1,7 +1,9 @@
 package com.xtang.dao;
 
 import com.xtang.pojo.UsersReport;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UsersReportMapper {
     int deleteByPrimaryKey(String id);
 

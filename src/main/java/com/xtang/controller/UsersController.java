@@ -4,19 +4,18 @@ import com.xtang.common.ServerResponse;
 import com.xtang.pojo.Users;
 import com.xtang.service.IUsersService;
 import com.xtang.utils.MD5Utils;
+import com.xtang.utils.PagedResult;
 import com.xtang.utils.RedisOperator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
 
 /**
  * @program: short-video-back
@@ -56,7 +55,6 @@ public class UsersController extends BasicController {
     @ApiOperation(value = "用户登录接口", notes = "用户登录接口服务")
     @PostMapping("login")
     public ServerResponse usersLogin(Users users, HttpServletRequest req) throws Exception {
-//        Thread.sleep(5000);
         if (StringUtils.isBlank(users.getUsername()) || StringUtils.isBlank(users.getPassword())) {
             return ServerResponse.createByErrorMsg("账号和密码为空");
         }
@@ -86,17 +84,18 @@ public class UsersController extends BasicController {
     }
 
     @ApiOperation(value = "注销接口", notes = "注销接口服务")
-    @ApiImplicitParam(name = "userId",value = "用户ID",required = true,
-                            dataType = "String",paramType = "query")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true,
+            dataType = "String", paramType = "query")
     @PostMapping("logout")
-    public ServerResponse logout(String userId) throws Exception{
-        redis.del(USERS_REDIS_SESSION+":"+userId);
+    public ServerResponse logout(String userId) throws Exception {
+        redis.del(USERS_REDIS_SESSION + ":" + userId);
         return ServerResponse.createBySuccessMsg("注销成功");
     }
 
-    @ApiOperation(value = "测试接口", notes = "测试接口服务")
-    @GetMapping("test")
-    public ServerResponse test() {
-        return ServerResponse.createBySuccessMsg("测试成功");
+    @PostMapping(value = "getMyFollowList")
+    public ServerResponse getMyFollowList(String userId,Integer pageNum,Integer pageSize) throws Exception {
+        PagedResult pagedResult = iUsersService.getMyFollowList(userId, pageNum, pageSize);
+        return ServerResponse.createBySuccessData(pagedResult);
     }
+
 }

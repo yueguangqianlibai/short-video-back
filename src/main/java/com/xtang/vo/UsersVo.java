@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
-@ApiModel(value = "用户对象",description = "用户对象")
+@ApiModel(value = "用户对象", description = "用户对象")
 public class UsersVo {
     @ApiModelProperty(hidden = true)
     private String id;
@@ -15,10 +15,13 @@ public class UsersVo {
     @ApiModelProperty(hidden = true)
     private String userToken;
 
-    @ApiModelProperty(value = "用户名",name = "username",example = "xTang",required = true)
+    @ApiModelProperty(hidden = true)
+    private boolean isFollow;
+
+    @ApiModelProperty(value = "用户名", name = "username", example = "xTang", required = true)
     private String username;
 
-    @ApiModelProperty(value = "密码",name = "password",example = "123456",required = true)
+    @ApiModelProperty(value = "密码", name = "password", example = "123456", required = true)
     @JsonIgnore
     private String password;
 
@@ -38,15 +41,17 @@ public class UsersVo {
     private Integer receiveLikeCounts;
 
     @ApiModelProperty(hidden = true)
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a", locale = "zh", timezone = "GMT+8")
     private Date createTime;
 
     @ApiModelProperty(hidden = true)
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a", locale = "zh", timezone = "GMT+8")
     private Date updateTime;
 
-    public UsersVo(String id, String username, String password, String faceImage, String nickname, Integer fansCounts, Integer followCounts, Integer receiveLikeCounts, Date createTime, Date updateTime) {
+    public UsersVo(String id, String userToken, boolean isFollow, String username, String password, String faceImage, String nickname, Integer fansCounts, Integer followCounts, Integer receiveLikeCounts, Date createTime, Date updateTime) {
         this.id = id;
+        this.userToken = userToken;
+        this.isFollow = isFollow;
         this.username = username;
         this.password = password;
         this.faceImage = faceImage;
@@ -148,5 +153,13 @@ public class UsersVo {
 
     public void setUserToken(String userToken) {
         this.userToken = userToken;
+    }
+
+    public boolean isFollow() {
+        return isFollow;
+    }
+
+    public void setFollow(boolean follow) {
+        isFollow = follow;
     }
 }
