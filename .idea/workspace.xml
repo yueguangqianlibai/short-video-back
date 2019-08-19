@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81d90826-fc49-411a-9561-d4f0f02eb1a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/short-video-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/short-video-back.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/common/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/common/ServerResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/controller/UserServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/controller/UserServerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/controller/UsersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/controller/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/CommentsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/CommentsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/SearchRecordsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/SearchRecordsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersFansMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersFansMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersLikeVideosMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersLikeVideosMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersReportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/UsersReportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/VideosMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/VideosMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/dao/VideosMapperCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/dao/VideosMapperCustom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/pojo/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/pojo/Comments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/service/IUsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/service/IUsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/service/IVideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/service/IVideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/service/impl/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/service/impl/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/service/impl/VideoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/service/impl/VideoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/utils/MergeVideoMp3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/utils/MergeVideoMp3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/utils/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/utils/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xtang/vo/UsersVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xtang/vo/UsersVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/BgmMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/BgmMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/CommentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/CommentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/SearchRecordsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/SearchRecordsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UsersFansMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersFansMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UsersLikeVideosMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersLikeVideosMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UsersReportMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersReportMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/VideosMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/VideosMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/VideosMapperCustom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/VideosMapperCustom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/CommentsMapperCustom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="14" column="83" lean-forward="true" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
+            <state relative-caret-position="420">
+              <caret line="14" column="83" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -92,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xtang/vo/CommentsVo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+            <state relative-caret-position="1080">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding>
                 <element signature="e#3067#3068#0" expanded="true" />
                 <element signature="e#3100#3101#0" expanded="true" />
@@ -107,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xtang/controller/VideoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="312" column="2" selection-start-line="312" selection-start-column="2" selection-end-line="312" selection-end-column="2" />
+            <state relative-caret-position="172">
+              <caret line="300" column="28" lean-forward="true" selection-start-line="300" selection-start-column="28" selection-end-line="300" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,7 +194,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="50" />
     <option name="width" value="1710" />
@@ -240,7 +208,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,6 +287,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -507,11 +475,12 @@
       <workItem from="1565518985109" duration="9407000" />
       <workItem from="1565599247280" duration="2456000" />
       <workItem from="1565769398278" duration="11808000" />
+      <workItem from="1566242812082" duration="217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230803000" />
+    <option name="totallyTimeSpent" value="231020000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -532,7 +501,7 @@
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" sideWeight="0.50268096" side_tool="true" weight="0.21328671" />
       <window_info id="Web" order="5" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49731904" visible="true" weight="0.21328671" />
+      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49731904" visible="true" weight="0.21608391" />
       <window_info id="JRebel" order="7" side_tool="true" />
       <window_info id="Structure" order="8" side_tool="true" weight="0.25" />
       <window_info id="Database Console" order="9" weight="0.66293705" />
@@ -565,7 +534,7 @@
       <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" show_stripe_button="false" weight="0.24965034" />
       <window_info anchor="right" id="Debug" order="10" weight="0.3993007" />
-      <window_info anchor="right" id="JRebel Setup Guide" order="11" show_stripe_button="false" weight="0.16433567" />
+      <window_info anchor="right" id="JRebel Setup Guide" order="11" weight="0.16433567" />
       <window_info anchor="right" id="Coverage" order="12" side_tool="true" weight="0.32937062" />
     </layout>
   </component>
@@ -995,15 +964,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/CommentsMapperCustom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="14" column="83" lean-forward="true" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
+        <state relative-caret-position="420">
+          <caret line="14" column="83" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xtang/vo/CommentsVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+        <state relative-caret-position="1080">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
           <folding>
             <element signature="e#3067#3068#0" expanded="true" />
             <element signature="e#3100#3101#0" expanded="true" />
@@ -1015,8 +984,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xtang/controller/VideoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="312" column="2" selection-start-line="312" selection-start-column="2" selection-end-line="312" selection-end-column="2" />
+        <state relative-caret-position="172">
+          <caret line="300" column="28" lean-forward="true" selection-start-line="300" selection-start-column="28" selection-end-line="300" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

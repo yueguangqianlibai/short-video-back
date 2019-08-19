@@ -235,9 +235,9 @@ public class VideoController {
     /**
      * isSaveRecord 1-需要保存，0-不需要保存
      *
-     * @param videos videos
+     * @param videos       videos
      * @param isSaveRecord isSaveRecord
-     * @param pageNum pageNum
+     * @param pageNum      pageNum
      * @return ServerResponse
      */
     @PostMapping(value = "showAllVideo")
@@ -269,44 +269,43 @@ public class VideoController {
     }
 
     @PostMapping(value = "showUserWorks")
-    public ServerResponse showUserWorks(String userId,Integer pageNum,Integer pageSize) throws Exception {
+    public ServerResponse showUserWorks(String userId, Integer pageNum, Integer pageSize) throws Exception {
         PagedResult pagedResult = iVideoService.userWorksVideo(userId, pageNum, pageSize);
         return ServerResponse.createBySuccessData(pagedResult);
     }
 
     @PostMapping(value = "getUserLikesList")
-    public ServerResponse getUserLikesList(String userId,Integer pageNum,Integer pageSize) throws Exception {
+    public ServerResponse getUserLikesList(String userId, Integer pageNum, Integer pageSize) throws Exception {
         PagedResult pagedResult = iVideoService.getUserLikesList(userId, pageNum, pageSize);
         return ServerResponse.createBySuccessData(pagedResult);
     }
 
-
     @PostMapping(value = "saveComment")
-    public ServerResponse saveComment(Comments comments,String fatherCommentId,String toUserId) throws Exception {
-        if(StringUtils.isNoneBlank(fatherCommentId) && StringUtils.isNoneBlank(toUserId)){
+    public ServerResponse saveComment(Comments comments, String fatherCommentId, String toUserId) throws Exception {
+        if (StringUtils.isNoneBlank(fatherCommentId) && StringUtils.isNoneBlank(toUserId)) {
             comments.setFatherCommentId(fatherCommentId);
             comments.setToUserId(toUserId);
-        }*--++++0
+        }
         iVideoService.saveComment(comments);
         return ServerResponse.createBySuccessData("保存成功");
     }
 
-
     @PostMapping(value = "getVideoComments")
-    public ServerResponse getVideoComments(String videoId,Integer pageNum,Integer pageSize) throws Exception {
-        if (StringUtils.isBlank(videoId)){
+    public ServerResponse getVideoComments(String videoId, Integer pageNum, Integer pageSize) throws Exception {
+        if (StringUtils.isBlank(videoId)) {
             return ServerResponse.createByError();
         }
-        if(pageNum == 0){
+        if (pageNum == 0) {
             pageNum = 1;
         }
-        if(pageSize == 0){
-            pageSize =10;
+        if (pageSize == 0) {
+            pageSize = 10;
         }
 
-        PagedResult commentsList = iVideoService.getAllCommnets(videoId,pageNum,pageSize);
+        PagedResult commentsList = iVideoService.getAllCommnets(videoId, pageNum, pageSize);
         return ServerResponse.createBySuccessData(commentsList);
     }
+}
 
 
 //}
